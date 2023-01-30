@@ -19,7 +19,7 @@ namespace ADODZ1
             Random random = new Random();
             try { 
                 connection.Open();
-
+                Console.WriteLine("Подключение выполнено успешно.");
 
                 /*SqlCommand insertcommand = new SqlCommand();
                 insertcommand.Connection = connection;
@@ -54,7 +54,48 @@ namespace ADODZ1
                         $"| {reader.GetInt32(4)}");
                     line++;
                 }
-                Console.WriteLine("Подключение выполнено успешно.");
+                reader.Close();
+                Console.WriteLine("\n-----------------------------------------------------------\n");
+                command.CommandText = "select Name from fandv";
+                reader = command.ExecuteReader();
+
+                line = 0;
+                while (reader.Read())
+                {
+                    if (line == 0)
+                    {
+                        Console.WriteLine(reader.GetName(0));
+                    }
+                    Console.WriteLine(reader.GetString(0));
+                    line++;
+                }
+                reader.Close();
+                Console.WriteLine("\n-----------------------------------------------------------\n");
+                command.CommandText = "select DISTINCT(Color) from fandv";
+                reader = command.ExecuteReader();
+
+                line = 0;
+                while (reader.Read())
+                {
+                    if (line == 0)
+                    {
+                        Console.WriteLine(reader.GetName(0));
+                    }
+                    Console.WriteLine(reader.GetString(0));
+                    line++;
+                }
+                reader.Close();
+                Console.WriteLine("\n-----------------------------------------------------------\n");
+                command.CommandText = "select MAX(Calories) from fandv";
+                Console.WriteLine("Максимальная калорийность: " + (int)command.ExecuteScalar());
+                Console.WriteLine("\n-----------------------------------------------------------\n");
+                command.CommandText = "select MIN(Calories) from fandv";
+                Console.WriteLine("Минимальная калорийность: " + (int)command.ExecuteScalar());
+                Console.WriteLine("\n-----------------------------------------------------------\n");
+                command.CommandText = "select AVG(Calories) from fandv";
+                Console.WriteLine("Средняя калорийность: " + (int)command.ExecuteScalar());
+
+                
             }
             catch ( Exception ex )
             {
