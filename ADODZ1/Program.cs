@@ -93,9 +93,7 @@ namespace ADODZ1
                 Console.WriteLine("Минимальная калорийность: " + (int)command.ExecuteScalar());
                 Console.WriteLine("\n-----------------------------------------------------------\n");
                 command.CommandText = "select AVG(Calories) from fandv";
-                Console.WriteLine("Средняя калорийность: " + (int)command.ExecuteScalar());
-
-                
+                Console.WriteLine("Средняя калорийность: " + (int)command.ExecuteScalar());                
             }
             catch ( Exception ex )
             {
