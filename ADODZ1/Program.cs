@@ -21,7 +21,7 @@ namespace ADODZ1
                 connection.Open();
 
 
-                SqlCommand insertcommand = new SqlCommand();
+                /*SqlCommand insertcommand = new SqlCommand();
                 insertcommand.Connection = connection;
                 for (int i = 1; i <= 25; i++)
                 {
@@ -35,27 +35,25 @@ namespace ADODZ1
                         "(Id,Name,Type,Color,Calories) " +
                         "values ("+i+ ",'name"+i+"','fruits','yellow',"+random.Next(100,500)+");";
                 }
-                Console.WriteLine("Было добавлено " + insertcommand.ExecuteNonQuery() + " строк");
-                /*SqlCommand command = new SqlCommand("select * from fandv", connection);
+                Console.WriteLine("Было добавлено " + insertcommand.ExecuteNonQuery() + " строк");*/
+
+                SqlCommand command = new SqlCommand("select * from fandv", connection);
                 SqlDataReader reader = command.ExecuteReader();
 
-
+                int line = 0;
                 while (reader.Read()) 
-                {
-                    int line = 0;
+                {                    
                     if (line == 0)
                     {
-                        Console.WriteLine($"{reader.GetString(0)} | {reader.GetString(1)} " +
-                            $"| {reader.GetString(2)} | {reader.GetString(3)} " +
-                            $"| {reader.GetString(4)}");
+                        Console.WriteLine($"{reader.GetName(0)} | {reader.GetName(1)} " +
+                            $"| {reader.GetName(2)} | {reader.GetName(3)} " +
+                            $"| {reader.GetName(4)}");                       
                     }
-                    else 
-                    {
-                        Console.WriteLine($"{reader.GetInt32(0)} | {reader.GetString(1)} " +
-                            $"| {reader.GetString(2)} | {reader.GetString(3)} " +
-                            $"| {reader.GetInt32(4)}");
-                    }
-                }*/
+                    Console.WriteLine($"{reader.GetInt32(0)} | {reader.GetString(1)} " +
+                        $"| {reader.GetString(2)} | {reader.GetString(3)} " +
+                        $"| {reader.GetInt32(4)}");
+                    line++;
+                }
                 Console.WriteLine("Подключение выполнено успешно.");
             }
             catch ( Exception ex )
